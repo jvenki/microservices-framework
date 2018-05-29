@@ -1,0 +1,21 @@
+#securedBy: [ oauth_2_0 ] TODO: OAuth service is yet to be built
+get:
+  description: "Get logged in customer given his user name and login type"
+  queryParameters:
+      userName: string
+      loginType: string
+  is: [ hasResponseItem: { typeName: LoggedInCustomer }, hasNotFound ]
+post:
+  description: "Create or update logged in customer"
+  body:
+    application/json:
+      type: LoggedInCustomer
+  is: [ hasResponseItem: { typeName: LoggedInCustomer }]
+
+/{id}:
+  uriParameters:
+     id:
+       type: integer
+  get:
+    description: "Get logged in customer given his id"
+    is: [ hasResponseItem: { typeName: LoggedInCustomer }, hasNotFound ]

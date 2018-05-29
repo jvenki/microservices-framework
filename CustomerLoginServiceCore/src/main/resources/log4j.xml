@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration >
+
+    <appender name="R" class="org.apache.log4j.rolling.RollingFileAppender">
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="./sampleCustomerLoginService.log.%d.gz"/>
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%5p   %d %c:%t - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--<appender name="C" class="org.apache.log4j.ConsoleAppender">-->
+        <!--<param name="target" value="System.err"/>-->
+        <!--<param name="immediateFlush" value="false"/>-->
+        <!--<param name="encoding" value="UTF-8"/>-->
+        <!--<param name="threshold" value="warn"/>-->
+        <!--<layout class="org.apache.log4j.PatternLayout">-->
+            <!--<param name="conversionPattern" value="%d [%t] %-5p %c - %m%n"/>-->
+        <!--</layout>-->
+    <!--</appender>-->
+
+    <logger name="com.sparkjava">
+        <level value="DEBUG"/>
+    </logger>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="R"/>
+    </root>
+
+</log4j:configuration>

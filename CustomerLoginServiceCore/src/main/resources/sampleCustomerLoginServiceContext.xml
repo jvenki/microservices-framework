@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <context:component-scan base-package="com.bankbazaar" />
+    <context:annotation-config/>
+
+    <bean id="propertyConfigurer" class="com.bankbazaar.util.BankbazaarPropertyPlaceHolderConfigurer">
+        <constructor-arg index="0" ref="configProperties"/>
+    </bean>
+
+    <bean id="serviceIdentifier" class="com.bankbazaar.service.DefaultServiceIdentifier">
+        <!--suppress SpringModelInspection -->
+        <constructor-arg value="mp"/>
+    </bean>
+
+    <bean id="hibernateResolver" class="com.bankbazaar.util.ResourceResolver">
+        <constructor-arg>
+            <list>
+                <value>classpath*:hibernate.cfg.xml</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="hibernateConfigLocations" factory-bean="hibernateResolver" factory-method="getLocations"/>
+
+    <!--&lt;!&ndash; Hibernate SessionFactory &ndash;&gt;-->
+    <!--suppress DuplicatedBeanNamesInspection -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocations" ref="hibernateConfigLocations"/>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=${hibernate.dialect}
+                hibernate.query.substitutions=true 'Y', false 'N'
+                hibernate.cache.use_second_level_cache=true
+                hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+                hibernate.connection.isolation=2
+            </value>
+        </property>
+    </bean>
+
+    <bean id="configProperties" class="com.bankbazaar.util.ConfigUtil" factory-method="getConfigProperties"></bean>
+
+    <!--suppress DuplicatedBeanNamesInspection -->
+    <bean id="parentDataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close" abstract="true">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+
+        <property name="connectionTimeout" value="10000"/>
+        <property name="idleTimeout" value="300000"/>
+        <property name="maxLifetime" value="600000"/>
+        <property name="maximumPoolSize" value="30"/>
+
+        <property name="minimumIdle" value="0"/>
+        <property name="leakDetectionThreshold" value="120000"/>
+
+        <property name="registerMbeans" value="true"/>
+
+        <!--Performance tuning-->
+        <property name="dataSourceProperties">
+            <value>
+                cachePrepStmts=true
+                prepStmtCacheSize=250
+                prepStmtCacheSqlLimit=2048
+                useServerPrepStmts=false
+            </value>
+        </property>
+    </bean>
+
+    <!-- TODO: need to identify why property configurer does not work while running on embedded jetty server -->
+    <bean id="dataSource" parent="parentDataSource">
+        <property name="poolName" value="mpDataSource"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost/brint?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8&amp;amp;autoReconnect=true"/>
+        <property name="username" value="cloud"/>
+        <property name="password" value="scape"/>
+    </bean>
+
+</beans>

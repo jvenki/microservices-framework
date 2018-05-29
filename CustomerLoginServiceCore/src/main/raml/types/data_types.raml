@@ -1,0 +1,33 @@
+#The below types will be deleted after domain types from AFS are moved to a common module
+
+City: !include domain_types/location/city.raml
+
+Company: !include domain_types/organisation/company.raml
+Bank: !include domain_types/organisation/bank.raml
+
+Currency: !include domain_types/others/currency.raml
+Gender: !include domain_types/others/gender.raml
+EmploymentType: !include domain_types/others/employmentType.raml
+
+Address: !include ./toBeRemoved/address.raml
+ResidenceType: !include ./toBeRemoved/residenceType.raml
+State: !include ./toBeRemoved/state.raml
+ResidencyStatus: !include ./toBeRemoved/residencyStatus.raml
+MaritalStatus: !include ./toBeRemoved/maritalStatus.raml
+HighestEducationalQualification: !include ./toBeRemoved/highestEducationalQualification.raml
+
+LoginType: !include ./loginType.raml
+
+UniquePersonIdentifierType: !include ./uniquePersonIdentifierType.raml
+UniquePersonIdentifier: !include ./uniquePersonIdentifier.raml
+
+EmploymentDetail: !include ./employmentDetail.raml
+ContactDetail: !include ./contactDetail.raml
+PersonalInformation: !include ./personalInformation.raml
+
+LoggedInCustomer: !include ./loggedInCustomer.raml
+
+Error: !include ./error.raml
+
+
+

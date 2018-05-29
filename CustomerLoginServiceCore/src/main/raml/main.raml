@@ -1,0 +1,9 @@
+#%RAML 1.0
+version: v1
+baseUri: http://api.bankbazaar.com/CustomerLoginService/{version}
+mediaType:
+  - application/json
+title: Customer Login service API
+types: !include ./types/data_types.raml
+traits: !include ./apis/common/resource_traits.raml
+/loggedInCustomer: !include ./apis/loggedInCustomer.raml
