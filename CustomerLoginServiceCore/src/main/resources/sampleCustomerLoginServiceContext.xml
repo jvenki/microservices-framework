@@ -80,4 +80,5 @@
         <property name="password" value="scape"/>
     </bean>
 
+    <bean id="customerLoginService" class="com.bankbazaar.customerloginservice.CustomerLoginService"/>
 </beans>

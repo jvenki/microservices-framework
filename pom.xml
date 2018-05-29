@@ -16,6 +16,7 @@
         <module>HelloWorldVertX-9005</module>
         <module>CustomerLoginServiceCore</module>
         <module>CustomerLoginServiceSpark-9006</module>
+        <module>CustomerLoginServiceSpringBoot-9007</module>
     </modules>
 
 </project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>com.jvenki.microservices</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>CustomerLoginServiceSpringBoot</artifactId>
+
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <jdk.version>1.8</jdk.version>
+        <spring.version>4.3.16.RELEASE</spring.version>
+        <spring.security-version>4.2.5.RELEASE</spring.security-version>
+        <log4j.version>1.2.17</log4j.version>
+        <servlet.version>3.0.1</servlet.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>snapshots</id>
+            <name>Snapshots Repository</name>
+            <url>http://build.bankbazaar.com/archiva/repository/snapshots/</url>
+        </repository>
+        <repository>
+            <id>internal</id>
+            <name>Internal Repository</name>
+            <url>http://build.bankbazaar.com/archiva/repository/internal/</url>
+        </repository>
+        <repository>
+            <id>mvn-public</id>
+            <name>MVNRepository</name>
+            <url>http://mvnrepository.com</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>1.4.7.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jvenki.microservices</groupId>
+            <artifactId>CustomerLoginServiceCore</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>
