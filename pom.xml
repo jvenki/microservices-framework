@@ -18,6 +18,7 @@
         <module>CustomerLoginServiceSpark-9006</module>
         <module>CustomerLoginServiceSpringBoot-9007</module>
         <module>CustomerLoginServiceApacheCXF-9008</module>
+        <module>CustomerLoginServiceVertX-9009</module>
     </modules>
 
 </project>
