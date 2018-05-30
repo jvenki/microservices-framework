@@ -19,6 +19,7 @@
         <module>CustomerLoginServiceSpringBoot-9007</module>
         <module>CustomerLoginServiceApacheCXF-9008</module>
         <module>CustomerLoginServiceVertX-9009</module>
+        <module>CustomerLoginServiceJersey-9010</module>
     </modules>
 
 </project>
